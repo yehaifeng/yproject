@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="kubeadm">
+    <meta name="author" content="yehaifeng">
+{#    <link rel="icon" href="../../favicon.ico">#}
+
+    {% block title %}
+        <title>Title</title>
+    {% endblock %}
+
+    {% block include_css %}
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    {% endblock %}
+</head>
+
+<body>
+{% block page_menu %}
+    <!-- Fixed navbar -->
+    <ol class="breadcrumb">
+  	<li><a href="#">Home</a></li>
+  	<li><a href="#">Library</a></li>
+  	<li class="active">Data</li>
+    </ol> 
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">kubeadm</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+            <li><a href="../navbar-static-top/">Static top</a></li>
+            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+{#    <ul class="nav nav-tabs">#}
+{#        <li role="presentation" class="active"><a href="#">Home</a></li>#}
+{#        <li role="presentation"><a href="#">Profile</a></li>#}
+{#        <li role="presentation"><a href="#">Messages</a></li>#}
+{#    </ul>#}
+{% endblock %}
+
+{% block page_content %}
+
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Navbar example</h1>
+        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>To see the difference between static and fixed top navbars, just scroll.</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
+        </p>
+	<p>o</p> 
+	<p>o</p> 
+	<p>o</p> 
+	<p>o</p> 
+	<p>o</p> 
+	<p>o</p> 
+	<p>o</p> 
+	<p>o</p> 
+	o
+	o
+	o
+      </div>
+
+    </div> <!-- /container -->
+    <!-- <nav aria-label="...">
+  	<ul class="pager">
+    		<li><a href="#">Previous</a></li>
+                <li><a href="#">Next</a></li>
+        </ul>
+    </nav> -->
+
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+{% endblock %}
+
+{% block script %}
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://code.angularjs.org/1.7.0/angular.min.js"></script>
+    <script src="https://use.fontawesome.com/80ceda9450.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+{#    <script src="/static/plugin/jquery.js"/>#}
+	{% block addscript %}
+	//add your script
+	{% endblock %}
+{% endblock %}
+</body>
+
+{% block page_foot %}
+    <footer class="foot fixed-bottom">
+        <hr/>
+        <div class="container">
+{#            <div class="row footer-top">#}
+{#                <div class="col-sm-6 col-lg-6">#}
+{#                    <h4>#}
+{#                        <img src="https://static.bootcss.com/www/assets/img/logo.png?1512639218789">#}
+{#                    </h4>#}
+{#                    <p>本网站所列开源项目的中文版文档全部由<a href="http://www.bootcss.com/">Bootstrap中文网</a>成员翻译整理，并全部遵循 <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>协议发布。</p>#}
+{#                </div>#}
+{#                <div class="col-sm-6  col-lg-5 col-lg-offset-1">#}
+{#                    <div class="row about">#}
+{#                        <div class="col-xs-3">#}
+{#                            <h4>关于</h4>#}
+{#                            <ul class="list-unstyled">#}
+{#                                <li><a href="/about/">关于我们</a></li>#}
+{#                                <li><a href="/ad/">广告合作</a></li>#}
+{#                                <li><a href="/links/">友情链接</a></li>#}
+{#                                <li><a href="/hr/">招聘</a></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                        <div class="col-xs-3">#}
+{#                            <h4>联系方式</h4>#}
+{#                            <ul class="list-unstyled">#}
+{#                                <li><a href="http://weibo.com/bootcss" title="Bootstrap中文网官方微博" target="_blank">新浪微博</a></li>#}
+{#                                <li><a href="mailto:admin@bootcss.com">电子邮件</a></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                        <div class="col-xs-3">#}
+{#                            <h4>旗下网站</h4>#}
+{#                            <ul class="list-unstyled">#}
+{#                                <li><a href="http://www.golaravel.com/" target="_blank">Laravel中文网</a></li>#}
+{#                                <li><a href="http://www.ghostchina.com/" target="_blank">Ghost中国</a></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                        <div class="col-xs-3">#}
+{#                            <h4>赞助商</h4>#}
+{#                            <ul class="list-unstyled">#}
+{#                                <li><a href="https://www.upyun.com" target="_blank">又拍云</a></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <hr/>#}
+            <div class="row footer-bottom">
+                <ul class="list-inline text-center">
+                    <li><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></li><li>京公网安备11010802014853</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+{#    <nav class="navbar navbar-default navbar-fixed-bottom">#}
+{#        <div class="container footer">#}
+{#            版权所有@叶海丰#}
+{#        </div>#}
+{#    </nav>#}
+{% endblock %}
+
+
+
+
+
+</html>

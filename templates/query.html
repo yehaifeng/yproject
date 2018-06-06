@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block page_content %}
-<div ng-app="QueryModule" class="container">
+<div ng-app="QueryModule" ng-controller="QueryController" class="container">
     <!-- query form for book informatiom -->
     <form class="form-inline"> {% csrf_token %}
         <div class="form-group">
@@ -11,7 +11,11 @@
             <label for="author">host_ip</label>
             <input type="text" ng-model="host_ip" class="form-control" id="author" placeholder="叶海丰">
         </div>
-        <button type="button" class="btn btn-default" id="qbook">查询</button>
+	<div class="form-group">
+            <label for="author">namespace</label>
+	    <select class="form-control" ng-init="namespace=''" ng-model="namespace" ng-options="x for x in namespaces"></select>
+	</div>
+        <button type="button" class="btn btn-default" id="qbook" ng-click="query()">查询</button>
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">添加</button>
     </form>
     <!-- 模态框（Modal） -->
@@ -100,25 +104,38 @@
         <hr />
     </div>
     
-    <table ng-controller="QueryController" class="table table-hover table-bordered" id="displaytable">
+    <table  class="table table-hover table-bordered" id="displaytable">
         <tr style="text-align: center;background-color: cadetblue">
-            <th><span ng-bind="title.name"></span></th>
+            <!-- <th><span ng-bind="title.name"></span></th>
             <th><span ng-bind="title.ip"></span></th>
             <th><span ng-bind="title.namespace"></span></th>
             <th><span ng-bind="title.host_ip"></span></th>
-            <th><span ng-bind="title.status"></span></th>
+            <th><span ng-bind="title.status"></span></th> -->
+	    <th>{[{ title.name }]}</th>
+            <th>{[{ title.ip }]}</th>
+            <th>{[{ title.namespace }]}</th>
+            <th>{[{ title.host_ip }]}</th>
+            <th>{[{ title.phase }]}</th>
         </tr>
-	<tr class="displayinfo" ng-repeat="i in items ">
+    {% verbatim querytable %}
+	<tr class="displayinfo" ng-repeat="i in items">
+		<th>{[{ i.name }]}</th>
+		<th>{[{ i.ip }]}</th>
+		<th>{[{ i.namespace }]}</th>
+		<th>{[{ i.host_ip }]}</th>
+		<th>{[{ i.phase }]}</th>
+		<!-- <th>{{ i.name }}</th>
+		<th>{{ i.ip }}</th>
+		<th>{{ i.namespace }}</th>
+		<th>{{ i.host_ip }}</th>
+		<th>{{ i.phase }}</th>
 		<th><span ng-bind="i.name"></span></th>
 		<th><span ng-bind="i.ip"></span></th>
 		<th><span ng-bind="i.namespace"></span></th>
 		<th><span ng-bind="i.host_ip"></span></th>
-		<th><span ng-bind="i.phase"></span></th>
+		<th><span ng-bind="i.phase"></span></th> -->
 	</tr>	
+    {% endverbatim querytable %}
     </table>
-    
 </div>
 {% endblock %}
-<!-- {% block addscript %}
-	<script src="/static/kubeapp/query.js"></script>
-{% endblock %} -->

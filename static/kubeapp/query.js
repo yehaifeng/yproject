@@ -11,10 +11,11 @@ queryApp.controller('QueryController',function($scope, $http){
         $scope.items = response.data.pods;
         $scope.namespaces = response.data.namespaces;
         // console.log($scope.namespaces);
-    }
+    };
     function error(response) {
     	alert(respone.status);
-    }
+    };
+
     var url = '/kube/querypods/';
     var data = {};
     var config = '';
@@ -27,14 +28,22 @@ queryApp.controller('QueryController',function($scope, $http){
 	$scope.namespaces = response.data.namespaces;
 	// console.log($scope.namespaces);
    	}, function errorCallback(response) {
-    		alert(respone.status);
+    		alert(response.status);
     });
     
     $scope.query = function() {
         var data = {'pod_name':$scope.pod_name, 
                     'host_ip':$scope.host_ip, 
                     'namespace':$scope.namespace};
-	var url = '/kube/querypods/'';
-        $http.post(url, data).then(success(response), error(response));
-    }
+	    var url = '/kube/querypods/';
+        console.log(data);
+        // $http.post(url, data).then(success, error);
+        $http({
+                method: 'POST',
+                url: url,
+                data: data,
+            }).then(function(response){
+                $scope.config_json=response;
+          });
+    };
 });

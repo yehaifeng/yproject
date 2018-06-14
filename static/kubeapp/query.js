@@ -6,44 +6,55 @@ queryApp.config(function($interpolateProvider) {
 });
 
 queryApp.controller('QueryController',function($scope, $http){
+    // callback for success
     function success(response) {
-        $scope.title = {name:'name', ip:'ip', host_ip:'host_ip', namespace:'namespace', status:'status'};
+        $scope.title = {name:'name', ip:'ip', host_ip:'host_ip', namespace:'namespace', phase:'status'};
         $scope.items = response.data.pods;
         $scope.namespaces = response.data.namespaces;
         // console.log($scope.namespaces);
     };
+    // callback for error
     function error(response) {
     	alert(respone.status);
     };
 
-    var url = '/kube/querypods/';
+    var url = '/kubeapp/querypods/';
+    //var url = '/kubeapp/querypods/?pod_name=' + $scope.pod_name + '&host_ip=' + $scope.host_ip + '&namespace=' + $scope.namespace;
     var data = {};
     var config = '';
-    $http({
-    method: 'POST',
-    url: '/kube/querypods/'
+    // $http.get(url).then(success, error);
+    $http.post(url, data).then(success, error);
+    /*$http({
+    method: 'GET',
+    url: url
     }).then(function successCallback(response) {
-	$scope.title = {name:'name', ip:'ip', host_ip:'host_ip', namespace:'namespace', status:'status'};
+	    $scope.title = {name:'name', ip:'ip', host_ip:'host_ip', namespace:'namespace', phase:'status'};
         $scope.items = response.data.pods;
-	$scope.namespaces = response.data.namespaces;
-	// console.log($scope.namespaces);
+	    $scope.namespaces = response.data.namespaces;
+	    // console.log($scope.namespaces);
    	}, function errorCallback(response) {
     		alert(response.status);
-    });
+    });*/
     
     $scope.query = function() {
         var data = {'pod_name':$scope.pod_name, 
                     'host_ip':$scope.host_ip, 
                     'namespace':$scope.namespace};
-	    var url = '/kube/querypods/';
+	    var url = '/kubeapp/querypods/';
         console.log(data);
-        // $http.post(url, data).then(success, error);
-        $http({
+        $http.post(url, data).then(success, error);
+        /*$http({
                 method: 'POST',
                 url: url,
                 data: data,
             }).then(function(response){
                 $scope.config_json=response;
-          });
+          });*/
     };
+    
+    /*$scope.EnterKeyQuery=function($event){    
+        if($event.keyCode==13){
+            $scope.query();
+        }
+    }*/
 });

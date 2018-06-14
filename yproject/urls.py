@@ -20,6 +20,7 @@ from django.views.generic.base import RedirectView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', RedirectView.as_view(url="/kube/index/")),
-    url(r'^kube/', include('kubeapp.urls')),
+    url(r'^$', RedirectView.as_view(url="/kubeapp/index/")),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^kubeapp/', include('kubeapp.urls')),
 ]

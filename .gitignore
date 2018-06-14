@@ -104,4 +104,4 @@ venv.bak/
 .mypy_cache/
 
 # tmp file
-.swp
+.sw[po]

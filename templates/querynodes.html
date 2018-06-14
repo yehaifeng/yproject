@@ -1,0 +1,38 @@
+{% extends "query.html" %}
+    {% block query_tab %}
+    <form class="form-inline"> {% csrf_token %}
+        <div class="form-group">
+            <label for="bookname">node_name</label>
+            <input type="text" ng-model="node_name" class="form-control" id="bookname" placeholder="人类简史">
+        </div>
+        <div class="form-group">
+            <label for="author">label</label>
+            <input type="text" ng-model="labels" class="form-control" id="author" placeholder="叶海丰">
+        </div>
+        <div class="form-group">
+            <label for="author">status</label>
+            <select class="form-control" ng-init="ready" ng-model="status_select" ng-options="x for x in status_selects"></select>
+        </div>
+        <button type="button" class="btn btn-default" id="qbook" ng-click="query()" ng-keypress="EnterKeyQuery($event)">查询</button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">添加</button>
+    </form>
+   {% endblock query_tab %}
+
+{% block query_table %}
+<table  class="table table-hover table-bordered" id="displaytable">
+    <tr style="text-align: center;background-color: cadetblue">    
+        <th ng-repeat="x in title">{[{ x | uppercase }]}</th>
+    </tr>
+    <tr class="displayinfo" ng-repeat="i in items">
+        <th>{[{ i.node_name }]}</th>
+        <th>{[{ i.status }]}</th>
+        <th><p ng-repeat="y in i.roles">{[{ y }]}</p></th>
+        <th>{[{ i.version }]}</th>
+        <th><p ng-repeat="l in i.labels">{[{ l }]}</p></th>
+    </tr>
+</table>
+{% endblock query_table %}
+
+{% block addscript %}
+	<script src="/static/kubeapp/querynodes.js"></script>
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block page_content %}
 <div ng-app="QueryModule" ng-controller="QueryController" class="container">
-    <!-- query form for book informatiom -->
+    {% block query_tab %}
     <form class="form-inline"> {% csrf_token %}
         <div class="form-group">
             <label for="bookname">pod_name</label>
@@ -11,13 +11,14 @@
             <label for="author">host_ip</label>
             <input type="text" ng-model="host_ip" class="form-control" id="author" placeholder="叶海丰">
         </div>
-	<div class="form-group">
+	    <div class="form-group">
             <label for="author">namespace</label>
-	    <select class="form-control" ng-init="namespace=''" ng-model="namespace" ng-options="x for x in namespaces"></select>
-	</div>
-        <button type="button" class="btn btn-default" id="qbook" ng-click="query()">查询</button>
+	        <select class="form-control" ng-init="namespace=''" ng-model="namespace" ng-options="x for x in namespaces"></select>
+	    </div>
+        <button type="button" class="btn btn-default" id="qbook" ng-click="query()" ng-keypress="EnterKeyQuery($event)">查询</button>
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">添加</button>
     </form>
+    {% endblock query_tab %}
     <!-- 模态框（Modal） -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -104,6 +105,7 @@
         <hr />
     </div>
     
+    {% block query_table %}
     <table  class="table table-hover table-bordered" id="displaytable">
         <tr style="text-align: center;background-color: cadetblue">
             <!-- <th><span ng-bind="title.name"></span></th>
@@ -137,5 +139,6 @@
 	</tr>	
     {% endverbatim querytable %}
     </table>
+    {% endblock query_table %}
 </div>
 {% endblock %}

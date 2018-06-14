@@ -1,4 +1,22 @@
 {% extends "query.html" %}
+    {% block query_tab %}
+    <form class="form-inline"> {% csrf_token %}
+        <div class="form-group">
+            <label for="bookname">pod_name</label>
+            <input type="text" ng-model="pod_name" class="form-control" id="bookname" placeholder="人类简史">
+        </div>
+        <div class="form-group">
+            <label for="author">host_ip</label>
+            <input type="text" ng-model="host_ip" class="form-control" id="author" placeholder="叶海丰">
+        </div>
+        <div class="form-group">
+            <label for="author">namespace</label>
+            <select class="form-control" ng-init="namespace=''" ng-model="namespace" ng-options="x for x in namespaces"></select>
+        </div>
+        <button type="button" class="btn btn-default" id="qbook" ng-click="query()" ng-keypress="EnterKeyQuery($event)">查询</button>
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">添加</button>
+    </form>
+    {% endblock query_tab %}
 {% block addscript %}
 	<script src="/static/kubeapp/query.js"></script>
 {% endblock %}

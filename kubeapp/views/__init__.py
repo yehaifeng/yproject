@@ -3,8 +3,9 @@
 from __future__ import absolute_import
 
 from .index import index
-from .query_pods import QueryPods
-from .query_nodes import QueryNodes
+from .obj_pod import QueryPods
+from .rsc_node import QueryNodes
+from .rsc_pv import QueryPv
 
 from kubernetes import client, config
 

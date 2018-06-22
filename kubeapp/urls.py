@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.views.generic.base import RedirectView
 #from django.contrib import admin
-from kubeapp.views import index,QueryPods,QueryNodes
+from kubeapp.views import index,QueryPods,QueryNodes,QueryPv
 
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^index/$', index, name='kube_home'),
     url(r'^querypods/$', QueryPods.as_view(), name='query_pods'),
     url(r'^querynodes/$', QueryNodes.as_view(), name='query_nodes'),
+    url(r'^querypv/$', QueryPv.as_view(), name='query_pv'),
 ]

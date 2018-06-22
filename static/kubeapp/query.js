@@ -51,10 +51,9 @@ queryApp.controller('QueryController',function($scope, $http){
                 $scope.config_json=response;
           });*/
     };
-    
-    /*$scope.EnterKeyQuery=function($event){    
-        if($event.keyCode==13){
+    $(window).keydown(function (e) {
+        if(e.which == 13){
             $scope.query();
         }
-    }*/
+    });
 });

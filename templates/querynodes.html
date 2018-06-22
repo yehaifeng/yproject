@@ -2,18 +2,18 @@
     {% block query_tab %}
     <form class="form-inline"> {% csrf_token %}
         <div class="form-group">
-            <label for="bookname">node_name</label>
-            <input type="text" ng-model="node_name" class="form-control" id="bookname" placeholder="人类简史">
+            <label for="bookname">name</label>
+            <input type="text" ng-model="name" class="form-control" id="bookname" >
         </div>
         <div class="form-group">
             <label for="author">label</label>
-            <input type="text" ng-model="labels" class="form-control" id="author" placeholder="叶海丰">
-        </div>
+            <input type="text" ng-model="label" class="form-control" id="author" >
+        </div> 
         <div class="form-group">
             <label for="author">status</label>
-            <select class="form-control" ng-init="ready" ng-model="status_select" ng-options="x for x in status_selects"></select>
+            <select class="form-control" ng-init="status=status_selects[0]" ng-model="status" ng-options="x for x in status_selects"></select>
         </div>
-        <button type="button" class="btn btn-default" id="qbook" ng-click="query()" ng-keypress="EnterKeyQuery($event)">查询</button>
+        <button type="button" class="btn btn-default" id="qbook" ng-click="query()" ng-keypress="enterKeyQuery($event)">查询</button>
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">添加</button>
     </form>
    {% endblock query_tab %}
@@ -28,7 +28,7 @@
         <th>{[{ i.status }]}</th>
         <th><p ng-repeat="y in i.roles">{[{ y }]}</p></th>
         <th>{[{ i.version }]}</th>
-        <th><p ng-repeat="l in i.labels">{[{ l }]}</p></th>
+        <th><p ng-repeat="l in i.labels">{[{ l.name + ': ' + l.value }]}</p></th>
     </tr>
 </table>
 {% endblock query_table %}

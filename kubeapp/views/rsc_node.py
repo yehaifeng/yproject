@@ -43,22 +43,28 @@ class QueryNodes(View):
             status = req_dict['status'].lower() if 'status' in req_dict and req_dict['status'].strip() != '' else None
             #logger.debug('3 var is: %(pod_name)s %(host_ip)s %(namespace)s', req_dict)
         for i in nodes.items:
+            label_flag = 0
             if node_name or label or status:
                 if status and status not in [i.status.conditions[-1].type.lower(),'all']:
                     continue
                 if node_name and node_name != i.status.addresses[1].address:
                     continue
-                if label and pod_name not in i.metadata.label:
-                    continue
+                if label:
+                    for lk,lv in i.metadata.labels.items():
+                        if label in lk or label in lv:
+                            label_flag += 1
+            if label and label_flag == 0:
+                continue
             ret_node_name = i.status.addresses[1].address
             ret_status = i.status.conditions[-1].type
-            ret_labels = i.metadata.labels
+            ret_labels_dict = i.metadata.labels
             ret_roles = []
+            ret_labels = []
             ret_version = i.status.node_info.kubelet_version
-            print type(ret_labels)
-            for k,v in ret_labels.items():
+            for k,v in ret_labels_dict.items():
                 if k.split('/')[0] == 'node-role.kubernetes.io':
                     ret_roles.append(k.split('/')[1].split(':')[0])
+                ret_labels.append({'name':k, 'value':v})
             ret_list.append({'node_name': ret_node_name, 'status': ret_status, 'roles': ret_roles, 'version': ret_version, 'labels': ret_labels})
         if method and method == 'query':
             pass
